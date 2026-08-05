@@ -1,142 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .text {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1;
-            flex-direction: column;
-            display: flex;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            z-index: 2;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-
-        }
-
-        .navbar-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .navbar-yozuv {
-            width: 40px;
-            height: 40px;
-
-            background-size: cover;
-            background-position: center;
-            gap: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: black;
-            transition: background-color 0.3s ease;
-            margin-left: 900px;
-            margin-top: 10px;
-            font-size: 20px;
-            text-decoration: none;
-
-
-        }
-
-        .navbar-yozuv h4:hover {
-            color: rgb(252, 161, 3);
-            text-decoration: underline;
-            transition: 0.3s;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: black;
-        }
-
-        .header {
-            position: relative;
-
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwiftRide – Premium Taxi Service</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .hero-bg {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .pulse-dot {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .car-animation {
+      animation: moveCar 8s linear infinite;
+    }
+    @keyframes moveCar {
+      0% { transform: translateX(-100px); }
+      100% { transform: translateX(100vw); }
+    }
+  </style>
 </head>
+<body class="bg-slate-50 text-slate-800">
 
-<body>
-    <div class="navbar">
-        <div class="navbar-logo">
-            <h1 style="color: rgb(252, 161, 3);">Nomad Force </h1>
-            <div class="navbar-yozuv">
-                <h4>home</h4>
-                <h4>Our <br> studio</h4>
-                <h4>portfolio</h4>
-                <h4>news& events</h4>
-                <h4>contact us</h4>
+  <!-- Navbar -->
+  <nav class="fixed w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2">
+          <div class="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center">
+            <i class="fas fa-taxi text-slate-900 text-xl"></i>
+          </div>
+          <span class="text-white font-bold text-xl">Swift<span class="text-yellow-400">Ride</span></span>
+        </div>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+          <a href="#home" class="hover:text-yellow-400 transition">Home</a>
+          <a href="#services" class="hover:text-yellow-400 transition">Services</a>
+          <a href="#fleet" class="hover:text-yellow-400 transition">Fleet</a>
+          <a href="#how" class="hover:text-yellow-400 transition">How it Works</a>
+          <a href="#contact" class="hover:text-yellow-400 transition">Contact</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="hidden sm:flex items-center gap-2 text-sm text-green-400">
+            <span class="w-2 h-2 bg-green-400 rounded-full pulse-dot"></span>
+            <span id="liveTaxis">24</span> taxis online
+          </div>
+          <button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})" 
+                  class="bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-semibold px-5 py-2 rounded-full transition">
+            Book Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
+  <!-- Hero Section -->
+  <section id="home" class="hero-bg pt-28 pb-20 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="car-animation absolute bottom-20 text-6xl">🚕</div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left Content -->
+        <div class="text-white">
+          <div class="inline-flex items-center gap-2 bg-yellow-400/20 text-yellow-400 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
+            <i class="fas fa-bolt"></i> Real-time Tracking Available
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+            Premium Taxi Service<br>
+            <span class="text-yellow-400">Anytime, Anywhere</span>
+          </h1>
+          <p class="text-slate-300 text-lg mb-8 max-w-lg">
+            Book a reliable taxi in seconds. Live tracking, professional drivers, and transparent pricing.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                <i class="fas fa-clock text-yellow-400"></i>
+              </div>
+              <div>
+                <p class="font-semibold">Avg. Arrival</p>
+                <p class="text-slate-400 text-sm">4–7 minutes</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                <i class="fas fa-star text-yellow-400"></i>
+              </div>
+              <div>
+                <p class="font-semibold">4.9 Rating</p>
+                <p class="text-slate-400 text-sm">12k+ rides</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Booking Card -->
+        <div id="booking" class="glass rounded-2xl p-6 sm:p-8 shadow-2xl">
+          <h2 class="text-white text-2xl font-bold mb-6 flex items-center gap-2">
+            <i class="fas fa-map-marker-alt text-yellow-400"></i> Book Your Ride
+          </h2>
+          
+          <form id="bookingForm" class="space-y-4">
+            <div>
+              <label class="text-slate-300 text-sm mb-1 block">Pickup Location</label>
+              <div class="relative">
+                <i class="fas fa-circle text-green-400 absolute left-4 top-1/2 -translate-y-1/2 text-xs"></i>
+                <input type="text" id="pickup" required placeholder="Enter pickup address"
+                       class="w-full bg-slate-800/80 border border-slate-600 text-white rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+              </div>
+            </div>
+            
+            <div>
+              <label class="text-slate-300 text-sm mb-1 block">Drop-off Location</label>
+              <div class="relative">
+                <i class="fas fa-map-pin text-red-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+                <input type="text" id="dropoff" required placeholder="Enter destination"
+                       class="w-full bg-slate-800/80 border border-slate-600 text-white rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+              </div>
             </div>
 
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="text-slate-300 text-sm mb-1 block">Date</label>
+                <input type="date" id="date" required
+                       class="w-full bg-slate-800/80 border border-slate-600 text-white rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+              </div>
+              <div>
+                <label class="text-slate-300 text-sm mb-1 block">Time</label>
+                <input type="time" id="time" required
+                       class="w-full bg-slate-800/80 border border-slate-600 text-white rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+              </div>
+            </div>
+
+            <div>
+              <label class="text-slate-300 text-sm mb-1 block">Vehicle Type</label>
+              <select id="vehicle" class="w-full bg-slate-800/80 border border-slate-600 text-white rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                <option value="economy">Economy – $1.2/km</option>
+                <option value="comfort">Comfort – $1.8/km</option>
+                <option value="premium">Premium – $2.5/km</option>
+                <option value="xl">XL (6 seats) – $2.8/km</option>
+              </select>
+            </div>
+
+            <button type="submit" 
+                    class="w-full bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-bold py-3.5 rounded-xl transition flex items-center justify-center gap-2">
+              <i class="fas fa-taxi"></i> Confirm Booking
+            </button>
+          </form>
+
+          <!-- Success Message (hidden by default) -->
+          <div id="successMsg" class="hidden mt-6 p-5 bg-green-500/20 border border-green-500/40 rounded-xl text-center">
+            <div class="text-4xl mb-2">✅</div>
+            <h3 class="text-green-400 font-bold text-lg">Booking Confirmed!</h3>
+            <p class="text-slate-300 text-sm mt-1">Driver arriving in <span id="eta" class="font-bold text-yellow-400">5</span> minutes</p>
+            <p class="text-slate-400 text-xs mt-2">Booking ID: <span id="bookingId" class="font-mono"></span></p>
+          </div>
         </div>
-
+      </div>
     </div>
-    <div class="text">
-        <h1 style="color: white; font-family: Arial, sans-serif; text-align: center; margin-top: 1px; font-size: 70px;">
-            Nomad Force </h1>
+  </section>
 
-
-        <br>
-
-        <h4 style="color: white; font-family:Arial, sans-serif ;">create a great video for your <span
-                style="color: whitesmoke; text-decoration: underline; gap: 5px;">Website</span>
-        </h4>
+  <!-- Services -->
+  <section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">Why Choose SwiftRide?</h2>
+        <p class="text-slate-500 max-w-2xl mx-auto">Fast, safe and comfortable rides with real-time technology</p>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-slate-50 rounded-2xl p-6 hover:shadow-lg transition border border-slate-100">
+          <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center mb-4">
+            <i class="fas fa-bolt text-yellow-500 text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Instant Booking</h3>
+          <p class="text-slate-500 text-sm">Book a taxi in under 30 seconds with live availability.</p>
+        </div>
+        <div class="bg-slate-50 rounded-2xl p-6 hover:shadow-lg transition border border-slate-100">
+          <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+            <i class="fas fa-map-marked-alt text-blue-500 text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Live Tracking</h3>
+          <p class="text-slate-500 text-sm">Track your driver in real-time from pickup to drop-off.</p>
+        </div>
+        <div class="bg-slate-50 rounded-2xl p-6 hover:shadow-lg transition border border-slate-100">
+          <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+            <i class="fas fa-shield-alt text-green-500 text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Safe & Secure</h3>
+          <p class="text-slate-500 text-sm">Verified drivers, 24/7 support and SOS button.</p>
+        </div>
+        <div class="bg-slate-50 rounded-2xl p-6 hover:shadow-lg transition border border-slate-100">
+          <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+            <i class="fas fa-wallet text-purple-500 text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Transparent Pricing</h3>
+          <p class="text-slate-500 text-sm">No hidden charges. Pay via cash, card or wallet.</p>
+        </div>
+      </div>
     </div>
-    <div
-        style="background-image: url(./Screenshot\ 2025-10-15\ 185741.png); width: 1500px; height: 100vh; overflow: hidden;">
+  </section>
 
+  <!-- Fleet -->
+  <section id="fleet" class="py-20 bg-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">Our Fleet</h2>
+        <p class="text-slate-500">Choose the perfect vehicle for your journey</p>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+          <div class="h-40 bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center text-6xl">🚗</div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg">Economy</h3>
+            <p class="text-slate-500 text-sm mb-3">Affordable daily rides</p>
+            <p class="text-yellow-500 font-bold">From $1.2 / km</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+          <div class="h-40 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center text-6xl">🚙</div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg">Comfort</h3>
+            <p class="text-slate-500 text-sm mb-3">Extra space & comfort</p>
+            <p class="text-yellow-500 font-bold">From $1.8 / km</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+          <div class="h-40 bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center text-6xl">🚘</div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg">Premium</h3>
+            <p class="text-slate-500 text-sm mb-3">Luxury experience</p>
+            <p class="text-yellow-500 font-bold">From $2.5 / km</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+          <div class="h-40 bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center text-6xl">🚐</div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg">XL</h3>
+            <p class="text-slate-500 text-sm mb-3">Up to 6 passengers</p>
+            <p class="text-yellow-500 font-bold">From $2.8 / km</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div style="background-color: white;">
-        <h1 style="text-align: center; font-family: Arial, sans-serif; padding: 20px; color: black;">Our Services</h1>
-        <p style="text-align: center; font-family: Arial, sans-serif; padding: 0 200px 20px 200px; color: black;">We
-            offer a wide range of services to help you create stunning videos for your website. Our team of experts is
-            dedicated to delivering high-quality content that meets your specific needs and exceeds your expectations.
-        </p>
+  </section>
 
+  <!-- How it Works -->
+  <section id="how" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">How It Works</h2>
+        <p class="text-slate-500">Book a ride in 3 simple steps</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-yellow-400 text-slate-900 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
+          <h3 class="font-bold text-xl mb-2">Enter Locations</h3>
+          <p class="text-slate-500">Tell us where you are and where you want to go.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-yellow-400 text-slate-900 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
+          <h3 class="font-bold text-xl mb-2">Choose Vehicle</h3>
+          <p class="text-slate-500">Select the car type that fits your needs and budget.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-yellow-400 text-slate-900 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
+          <h3 class="font-bold text-xl mb-2">Ride & Track</h3>
+          <p class="text-slate-500">Sit back and track your driver in real time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- CTA -->
+  <section class="py-16 bg-slate-900">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Ready for your next ride?</h2>
+      <p class="text-slate-400 mb-8">Download our app or book instantly online</p>
+      <button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})" 
+              class="bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-bold px-8 py-3.5 rounded-full transition">
+        Book a Taxi Now
+      </button>
+    </div>
+  </section>
 
+  <!-- Footer -->
+  <footer id="contact" class="bg-slate-950 text-slate-400 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8">
         <div>
-            <img src="https://it-schooll.vercel.app/images/people/asia-business-woman-feeling-happy-smiling-looking-camera-while-relax-home-office.jpg"
-                alt="" style="width: 300px; height: 200px; margin: 20px;">
-            <img src="https://it-schooll.vercel.app/images/people/happy-african-american-professional-manager-smiling-looking-camera-headshot-portrait.jpg"
-                alt="" style="width: 300px; height: 200px; margin: 20px;">
-            <img src="https://it-schooll.vercel.app/images/people/working-business-lady.jpg" alt=""
-                style="width: 300px; height: 200px; margin: 20px;">
-            <img src="https://it-schooll.vercel.app/images/elena-rabkina-eVVzwsNhNf4-unsplash.jpg" alt=""
-                style="width: 300px; height: 200px; margin: 20px;">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-9 h-9 bg-yellow-400 rounded-lg flex items-center justify-center">
+              <i class="fas fa-taxi text-slate-900"></i>
+            </div>
+            <span class="text-white font-bold text-lg">SwiftRide</span>
+          </div>
+          <p class="text-sm">Premium taxi service with real-time tracking and professional drivers.</p>
         </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#home" class="hover:text-yellow-400">Home</a></li>
+            <li><a href="#services" class="hover:text-yellow-400">Services</a></li>
+            <li><a href="#fleet" class="hover:text-yellow-400">Fleet</a></li>
+            <li><a href="#how" class="hover:text-yellow-400">How it Works</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3">Contact</h4>
+          <ul class="space-y-2 text-sm">
+            <li><i class="fas fa-phone mr-2 text-yellow-400"></i> +1 (555) 123-4567</li>
+            <li><i class="fas fa-envelope mr-2 text-yellow-400"></i> support@swiftride.com</li>
+            <li><i class="fas fa-map-marker-alt mr-2 text-yellow-400"></i> 123 Ride Street, City</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3">Follow Us</h4>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-slate-900 transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-slate-900 transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-slate-900 transition"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-slate-800 mt-10 pt-6 text-center text-sm">
+        © 2026 SwiftRide. All rights reserved. | Demo website with simulated real-time features
+      </div>
     </div>
+  </footer>
 
+  <script>
+    // Set today's date as default
+    document.getElementById('date').valueAsDate = new Date();
+
+    // Live taxis counter simulation
+    setInterval(() => {
+      const el = document.getElementById('liveTaxis');
+      let current = parseInt(el.textContent);
+      const change = Math.floor(Math.random() * 5) - 2; // -2 to +2
+      el.textContent = Math.max(15, Math.min(40, current + change));
+    }, 4000);
+
+    // Booking form
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const pickup = document.getElementById('pickup').value;
+      const dropoff = document.getElementById('dropoff').value;
+      
+      // Generate fake booking ID
+      const id = 'SR' + Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('bookingId').textContent = id;
+      
+      // Random ETA 3-8 minutes
+      const eta = Math.floor(Math.random() * 6) + 3;
+      document.getElementById('eta').textContent = eta;
+      
+      // Show success
+      document.getElementById('successMsg').classList.remove('hidden');
+      
+      // Optional: scroll to success message
+      document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      
+      // Reset form after 8 seconds (optional)
+      setTimeout(() => {
+        document.getElementById('bookingForm').reset();
+        document.getElementById('date').valueAsDate = new Date();
+        document.getElementById('successMsg').classList.add('hidden');
+      }, 12000);
+    });
+  </script>
 </body>
-
 </html>
